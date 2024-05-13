@@ -1,11 +1,18 @@
 from django.forms import ModelForm, Form, CharField, TextInput
 
-from .models import Movie
+from .models import Movie, Cinema
 
 class MovieForm(ModelForm):
     class Meta:
         model = Movie
         fields = "__all__"
+
+class CinemaForm(ModelForm):
+    class Meta:
+        model = Cinema
+        fields = '__all__'
+        
+        
 
 # class MovieForm(Form):
 #     title = CharField(label="Title: ", max_length=100, id=)

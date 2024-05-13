@@ -1,0 +1,15 @@
+{% extends "cinema_app/base.html" %}
+
+{% block content %}
+    {% for cinemas in cinema %}
+    <h2>Name: {{cinemas.name}}</h2>
+    <p>{{cinemas.location}}</p>
+    <p>{{cinemas.capacity}}</p>
+    {% endfor %}
+
+    <form method="post">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="Send Request" />
+    </form>
+{% endblock %}
