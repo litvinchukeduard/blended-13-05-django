@@ -1,6 +1,6 @@
 from django.forms import ModelForm, Form, CharField, TextInput
 
-from .models import Movie, Cinema
+from .models import Movie, Cinema, Screening
 
 class MovieForm(ModelForm):
     class Meta:
@@ -10,6 +10,12 @@ class MovieForm(ModelForm):
 class CinemaForm(ModelForm):
     class Meta:
         model = Cinema
+        fields = '__all__'
+
+
+class ScreeningForm(ModelForm):
+    class Meta:
+        model = Screening
         fields = '__all__'
         
         

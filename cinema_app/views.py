@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
-from .models import Movie, Cinema
-from .forms import MovieForm, CinemaForm
+from .models import Movie, Cinema, Screening
+from .forms import MovieForm, CinemaForm, ScreeningForm
 
 def main(request):
     return render(request, 'cinema_app/index.html')
@@ -38,3 +38,21 @@ def cinema(request):
         # for movie in movies:
         form = CinemaForm()
         return render(request, 'cinema_app/cinema.html', {'cinema': cinema, 'form': form})
+    
+def screening(request):
+    if request.method == 'POST':
+        form = ScreeningForm(request.POST)
+        if form.is_valid():
+            print('is valid')
+            screening = Screening()
+            screening.movie = form.cleaned_data['movie']
+            screening.cinema = form.cleaned_data['cinema']
+            screening.datetime = form.cleaned_data['datetime']
+            screening.save()
+            return redirect('main page')
+    else:
+        screenings = Screening.objects.all()
+        # for movie in movies:
+        form = ScreeningForm()
+        return render(request, 'cinema_app/screening.html', {'screenings': screenings, 'form': form})
+    
